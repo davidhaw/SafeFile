@@ -1,10 +1,12 @@
 package base;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Main {
 	
 	
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
     	
     	//Start the object e for AlphaNum encryptions
 		Encrypt e = new Encrypt();
@@ -50,6 +52,13 @@ public class Main {
             
     		System.out.println("Below is encrypted Text with Ceaser Cypher, offset of " + numEi);
     		System.out.println(encrypted);
+    		
+    		//Code to save file to EncryptedT.txt
+    			createfile c = new createfile();
+    			c.openFile();
+    			c.addRecords(encrypted);
+    			c.closeFile();
+    			System.out.println("The encrypted text was saved on EncryptedT.txt");
     		
     		System.out.println("please reload the application again if you want to do another calculation");
 
