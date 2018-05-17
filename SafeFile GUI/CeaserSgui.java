@@ -2,13 +2,17 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.*;
 
+
+
 public class CeaserSgui extends JFrame{
 
-	private JButton encryptC;
+	private JButton encryptC, encryptA;
 	private JLabel message1;
+	private JCheckBox saveF;
 	//Offset for the Ceaser Cypher and multby for how much to multiply for AlphaNum
 	private JTextField offset, messageS;
 	
@@ -52,14 +56,75 @@ public class CeaserSgui extends JFrame{
 		offset = new JTextField();
 		panel.add(offset);
 		
-		messageS.setText("Offset for Ceaser Cypher");
+		messageS.setText("Number to Offset or Multiply");
 		offset.setText("Message to Encrypt");
 		
 		encryptC = new JButton("Encrypt With Ceaser Cypher");
 		encryptC.addActionListener(
 			new ButtonCounterActionListener()
 		);
+		
 		panel.add(encryptC);
+		
+		saveF = new JCheckBox("Save File to txtE.txt ?");
+		panel.add(saveF);
+		
+		
+		//Adding in button to encrypt with AlphaNum
+		encryptA = new JButton("Encrypt With AlphaNum");
+		encryptA.addActionListener(new ActionListener() { 
+			  public void actionPerformed(ActionEvent e) { 
+			    
+				 //eNCRYPTING cODE FOR aLPHAnUM
+				  
+				  String message = offset.getText();
+				  int num = Integer.parseInt(messageS.getText());
+				  
+				  String t = "";
+					for (int i = 0; i < message.length(); ++i) {
+					    char ch = message.charAt(i);
+					    if (!t.isEmpty()) {
+					        t += " ";
+					    }
+					    int n = (int)ch - (int)'a' + 1;
+					    t += String.valueOf(n);
+					}
+					System.out.println(t);
+					
+					// The string you want to be an integer array.
+					String[] integerStrings = t.split(" "); 
+					// Splits each spaced integer into a String array.
+					int[] integers = new int[integerStrings.length]; 
+					// Creates the integer array.
+					for (int i = 0; i < integers.length; i++){
+					    integers[i] = Integer.parseInt(integerStrings[i]); 
+					//Parses the integer for each string.
+					}
+					
+
+					for (int i = 0; i < integers.length; i++)
+					    integers[i] = integers[i] * num;  
+					
+					
+					System.out.println("Encrypted Message: " + Arrays.toString(integers));
+					message1.setText("Encrypted Message: " + Arrays.toString(integers));
+					
+					Boolean sel = saveF.isSelected();
+					
+					if (sel =true) {
+						
+						createfile c = new createfile();
+	        			c.openFile();
+	        			c.addRecords( Arrays.toString(integers));
+	        			c.closeFile();
+						
+					}
+			  } 
+			  
+						} );
+		
+		panel.add(encryptA);
+		
 	}
 	
 	
