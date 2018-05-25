@@ -53,18 +53,28 @@ public class Main {
     		System.out.println("Below is encrypted Text with Ceaser Cypher, offset of " + numEi);
     		System.out.println(encrypted);
     		
+    		//Asks if user wants to save file
+    		System.out.println("Would you like to save the encrypted text into an text file? Please say YES or NO");
+    		String ifS = scanner1.next();
+    		
+    		if (ifS.equals("YES")) {
     		//Code to save file to EncryptedT.txt
     			createfile c = new createfile();
     			c.openFile();
     			c.addRecords(encrypted);
     			c.closeFile();
-    			System.out.println("The encrypted text was saved on EncryptedT.txt");
-    		
-    		System.out.println("please reload the application again if you want to do another calculation");
+    			System.out.println("The encrypted text was saved on textE.txt");
+    			
+    			System.out.println("please reload the application again if you want to do another calculation");
 
-            // close the scanner
-            scanner1.close();
-            
+                // close the scanner
+                scanner1.close();
+    		} else {
+    			System.out.println("please reload the application again if you want to do another calculation");
+
+                // close the scanner
+                scanner1.close();
+    		} 
         		
         	} else if (howE.equals("AlphaNum")) {
         		
@@ -76,8 +86,32 @@ public class Main {
         		String numS = scanner1.nextLine();
         		int num = Integer.parseInt(numS);
         		
-    			e.encryptM(s, num);
+    			String en = e.encryptM(s, num);
         		
+    			
+        		//Asks if user wants to save file
+        		System.out.println("Would you like to save the encrypted text into an text file? Please say YES or NO ||| THIS WILL OVERWRITE ANY FILE NAMED textE.txt IN THE SAME FOLDER AS .JAR FILE!!!");
+        		String ifS = scanner1.next();
+        		
+        		if (ifS.equals("YES")) {
+        		//Code to save file to EncryptedT.txt
+        			createfile c = new createfile();
+        			c.openFile();
+        			c.addRecords(en);
+        			c.closeFile();
+        			System.out.println("The encrypted text was saved on textE.txt");
+        			
+        			System.out.println("please reload the application again if you want to do another calculation");
+
+                    // close the scanner
+                    scanner1.close();
+        		} else {
+        			System.out.println("please reload the application again if you want to do another calculation");
+
+                    // close the scanner
+                    scanner1.close();
+        		} 
+    			
     			
         	}
     	
@@ -90,12 +124,25 @@ public class Main {
             	System.out.println("For Ceaser Cypher, enter Ceaser. For Alpha Numeric, enter AlphaNum"); //More would be added in as more encryption ways are added into the program
             	String howD = scanner.next();
             	
+            	String textD;
             	 if(howD.equals("Ceaser")) {
             		
-            		//Asks user the text and offset they want to use to decrypt the ceaser cypher
-            		System.out.println("What is the text you would like to decrypt?");
-                    String textD = scanner.next();
-                    
+            		 System.out.println("Is the text going to be given through the console (CONSOLE) or is it in textE.txt? (FILE) ");
+            		 String howT = scanner.next();
+            		 
+            		 if (howT.equals("FILE")){
+            			 //Gets Ceaser data from file
+            			 Read r = new Read();
+            			  textD = r.read(howT);
+            			 
+            		 } else {
+            			//Asks user the text and offset they want to use to decrypt the ceaser cypher
+                 		System.out.println("What is the text you would like to decrypt?");
+                          textD = scanner.next();
+                         
+            		 }
+            		 
+            		
                     System.out.println("How many characters away is the original message?");
             		String numD = scanner.next();
             				
