@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Encrypt {
 
-	public void encryptM (String message, int num) {
+	public String encryptM (String message, int num) {
 		
 		String t = "";
 		for (int i = 0; i < message.length(); ++i) {
@@ -15,7 +15,7 @@ public class Encrypt {
 		    int n = (int)ch - (int)'a' + 1;
 		    t += String.valueOf(n);
 		}
-		System.out.println(t);
+		//System.out.println(t);
 		
 		// The string you want to be an integer array.
 		String[] integerStrings = t.split(" "); 
@@ -31,9 +31,13 @@ public class Encrypt {
 		for (int i = 0; i < integers.length; i++)
 		    integers[i] = integers[i] * num;  
 		
+		String formatted =  Arrays.toString(integers)
+				.replace("[", "")
+				.replace("]", "")
+				.trim();
 		
-		System.out.println("Encrypted Message: " + Arrays.toString(integers));
-		
+		System.out.println("Encrypted Message: " + formatted);
+		return formatted;
 		
 	}
 	

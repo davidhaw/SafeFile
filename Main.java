@@ -158,7 +158,7 @@ public class Main {
             		
             	} else if (howD.equals("AlphaNum")){
             		
-            		System.out.println("Please enter the numbers WITHOUT THE BRACKETS");
+            		System.out.println("Please enter the encrypted message");
             		String sampleString = scanner.next();
             		
             	      String[] stringArray = sampleString.split(",");
