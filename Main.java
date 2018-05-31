@@ -79,8 +79,9 @@ public class Main {
         	} else if (howE.equals("AlphaNum")) {
         		
         		
-        		System.out.println("Please enter the message to encrypt with NO SYMBOLS(symbols will look weird afterwards) :");
-        		String s = scanner1.nextLine();
+        		System.out.println("Please enter the message to encrypt with NO SYMBOLS(symbols will look weird afterwards):");
+        		String s = scanner1.nextLine()
+        				.replace(" ", "2");;
         		
         		System.out.println("How much do you want to multiply the encryption (The bigger the better but slower) NO DECIMALS");
         		String numS = scanner1.nextLine();
@@ -158,8 +159,23 @@ public class Main {
             		
             	} else if (howD.equals("AlphaNum")){
             		
-            		System.out.println("Please enter the encrypted message");
-            		String sampleString = scanner.next();
+            		
+            		 System.out.println("Is the text going to be given through the console (CONSOLE) or is it in textE.txt? (FILE) ");
+            		 String howT = scanner.next();
+            		 
+            		 String sampleString;
+            		 if (howT.equals("FILE")){
+            			 //Gets Ceaser data from file
+            			 Read r = new Read();
+            			 sampleString = r.read(howT);
+            			 
+            		 } else {
+            				System.out.println("Please enter the encrypted message");
+                    	    sampleString = scanner.next();
+                         
+            		 }
+            		
+            	
             		
             	      String[] stringArray = sampleString.split(",");
             	      int[] intArray = new int[stringArray.length];

@@ -30,11 +30,12 @@ public class Encrypt {
 
 		for (int i = 0; i < integers.length; i++)
 		    integers[i] = integers[i] * num;  
-		
+ 		
 		String formatted =  Arrays.toString(integers)
+				.replaceAll("\\s+","")
 				.replace("[", "")
-				.replace("]", "")
-				.trim();
+				.replace("]", "");
+				
 		
 		System.out.println("Encrypted Message: " + formatted);
 		return formatted;
@@ -55,7 +56,8 @@ public class Encrypt {
 			
 		}
 			
-		String decodedE = String.join("", decoded);
+		String decodedE = String.join("", decoded)
+				.replace("", " ");
 
 	    System.out.println("Decoded: " + decodedE);
 	}
