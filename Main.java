@@ -85,9 +85,13 @@ public class Main {
         		
         		System.out.println("How much do you want to multiply the encryption (The bigger the better but slower) NO DECIMALS");
         		String numS = scanner1.nextLine();
-        		int num = Integer.parseInt(numS);
-        		
-    			String en = e.encryptM(s, num);
+        		int num = (int) Long.parseLong(numS);
+        	
+        		//Asks user if they want to add a specific number to all of the multiplied encrypted numbers
+        		System.out.println("Would you like to add a number to all of the multiplied encrypted numbers?");
+        		String addS = scanner1.nextLine();
+        		int adds = (int) Long.parseLong(addS);
+    			String en = e.encryptM(s, num, adds);
         		
     			
         		//Asks if user wants to save file
@@ -181,14 +185,19 @@ public class Main {
             	      int[] intArray = new int[stringArray.length];
             	      for (int i = 0; i < stringArray.length; i++) {
             	         String numberAsString = stringArray[i];
-            	         intArray[i] = Integer.parseInt(numberAsString);
+            	         intArray[i] = (int) Long.parseLong(numberAsString);
             	      }
             	      System.out.println("Number of letters/integers: " + intArray.length);
             		
             		System.out.println("Please enter the amount you multiplied:");
             		String numS = scanner.next();
             		int num = e.parseD(numS);
-            		e.decryptM(intArray, num);
+            		
+            		System.out.println("Please enter the amount you added:");
+            		String addS = scanner.next();
+            		int add = e.parseD(numS);
+            		
+            		e.decryptM(intArray, num, add);
             		
             	}
             	

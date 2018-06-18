@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Encrypt {
 
-	public String encryptM (String message, int num) {
+	public String encryptM (String message, int num, int adds) {
 		
 		String t = "";
 		for (int i = 0; i < message.length(); ++i) {
@@ -28,9 +28,10 @@ public class Encrypt {
 		}
 		
 
-		for (int i = 0; i < integers.length; i++)
-		    integers[i] = integers[i] * num;  
- 		
+		for (int i = 0; i < integers.length; i++) {
+		    integers[i] = integers[i] * num + adds;  
+		}
+		
 		String formatted =  Arrays.toString(integers)
 				.replaceAll("\\s+","")
 				.replace("[", "")
@@ -42,11 +43,14 @@ public class Encrypt {
 		
 	}
 	
-	public void decryptM (int integers[], int num) {
+	public void decryptM (int integers[], int num, int add) {
 		
 		
 		for (int i = 0; i < integers.length; i++)
 		    integers[i] = integers[i] / num;  
+		
+		for (int i = 0; i < integers.length; i++)
+		    integers[i] = integers[i] - add;  
 		
         String[] decoded = new String[integers.length];
 
